@@ -8,7 +8,7 @@ export const useAuth = () => {
 
 // Authentication provider component
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState({'name': 'Joey'});
+    const [user, setUser] = useState({'username': false, 'token' : false});
   
     // Login function
     const login = (userData) => {

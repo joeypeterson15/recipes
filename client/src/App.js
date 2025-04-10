@@ -1,51 +1,62 @@
 import React, { createContext, useContext, useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import Login from './Login';
-import { useAuth, AuthProvider } from './AuthContext'
-
-// Protected route component
-const ProtectedRoute = () => {
-  const { user } = useAuth();
-  
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
-  
-  // If user is authenticated, render the child routes
-  return <Outlet />;
-};
+import { useAuth } from './AuthContext'
+import { getDishes, getDishOnSubmit } from './queries';
+import { Input, Button, List } from 'antd';
 
 // App component that requires authentication
 const App = () => {
   const { user, logout } = useAuth();
+  const [search, setSearch] = useState('')
+  const [recipes, setRecipes] = useState([])
+
+  const processRecipes = (recipes) => {
+    return recipes
+  };
+
+  const queryRecipes = (value) => {
+    console.log('in query recipes')
+    setSearch(value)
+    let recipesResponse = getDishes(value)
+    recipesResponse = processRecipes(recipesResponse)
+
+    setRecipes(recipesResponse)
+  }
+
+  const searchDishOnSubmit = () => {
+
+  }
   
   return (
-    <div>
-      <h1>Welcome to the App, {user.username}!</h1>
-      <button onClick={logout}>Logout</button>
-    </div>
+    <>
+      <div>
+        <h1>Welcome to the App, {user.username}!</h1>
+        <Input 
+          placeholder='Search Recipes...'
+          onChange={(e) => queryRecipes(e.target.value)}
+        />
+        <Button onSubmit={() => searchDishOnSubmit()}>
+          Find Recipe
+        </Button>
+        {recipes.length > 0 &&
+          <List
+          header={<div>Header</div>}
+          footer={<div>Footer</div>}
+          bordered
+          dataSource={recipes}
+          renderItem={(item) => (
+            <List.Item>
+              {item}
+            </List.Item>
+          )}
+          />
+        }
+      </div>
+
+      <div>
+        <button onClick={logout}>Logout</button>
+      </div>
+    </>
   );
 };
 
-// Router setup
-const AppRouter = () => {
-  return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          {/* Public routes
-          <Route path="/login" element={<Login />} />
-           */}
-          {/* Protected routes */}
-          <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<App />} />
-            <Route path="/dashboard" element={<App />} />
-            {/* Add more protected routes as needed */}
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
-  );
-};
-
-export default AppRouter;
+export default App;

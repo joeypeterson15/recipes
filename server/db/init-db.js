@@ -7,7 +7,7 @@ const seedFilePath = path.resolve(__dirname, 'seed.js');
 // Check if MongoDB is running
 async function checkMongoDBRunning() {
   try {
-    await mongoose.connect('mongodb://localhost:27017/test', { 
+    await mongoose.connect('mongodb://localhost:27017/recipes_db', { 
       serverSelectionTimeoutMS: 2000 
     });
     await mongoose.disconnect();

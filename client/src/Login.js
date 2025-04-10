@@ -1,9 +1,17 @@
 
 import React, { useEffect } from 'react';
 import { useAuth } from './AuthContext'; // Assuming your AuthContext is in a separate file
+import { Navigate } from "react-router-dom";
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login, user } = useAuth();
+
+  useEffect(() => {
+    console.log('user: ', user)
+    if (user?.username && user?.token) {
+      return <Navigate to="/" />
+    }
+  }, [user, login])
 
   useEffect(() => {
     // Load the Google API script
@@ -16,7 +24,7 @@ const Login = () => {
     // Add meta tag for client ID
     const meta = document.createElement('meta');
     meta.name = 'google-signin-client_id';
-    meta.content = process.env.GOOGLE_CLIENT_ID;
+    meta.content = '511466373592-oom82ta6ctiqlukuigj1ajjvlmndsqg0.apps.googleusercontent.com';
     window.document.head.appendChild(meta);
 
     // Initialize Google Sign-In when script is loaded
@@ -64,12 +72,22 @@ const Login = () => {
     //     document.head.removeChild(metaTag);
     //   }
     // };
-  }, [login]);
+  }, []);
+
+  const onSignIn = (googleUser) => {
+    login({
+      username: 'asdfasdf',
+      email: 'asdfasdf',
+      googleId: 'asdfasdf',
+      token: 'asdfasdf'
+    });
+  }
 
   return (
-    <div className="login-container">
-        <div className="g-signin2" data-onsuccess="onSignIn"></div>
-    </div>
+      <div className="login-container">
+          <div className="g-signin2" data-onsuccess={(googleUser) => onSignIn(googleUser)}></div>
+      </div>
+    
   );
 };
 
