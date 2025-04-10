@@ -4,10 +4,6 @@ axios.defaults.headers.post['Content-Type'] ='application/json';
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
 const SERVER_URI = 'http://localhost:3000'
-const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Content-Type': 'application/json',
-}
   
 export async function getDishes(value) {
     let endpoint = '/search'
@@ -16,9 +12,8 @@ export async function getDishes(value) {
 
     console.log('in queries.js - getDishes')
     
-    await axios.get(serverURL, headers)
+    await axios.get(serverURL)
     .then(res => {
-        // const dishes = res.data
         console.log('in queries.js - getDishes')
         return res
     })
