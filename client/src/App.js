@@ -13,12 +13,11 @@ const App = () => {
     return recipes
   };
 
-  const queryRecipes = (value) => {
+  const queryRecipes = (value, isSubmit=false) => {
     console.log('in query recipes')
-    setSearch(value)
-    let recipesResponse = getDishes(value)
+    let recipesResponse = getDishes(value, isSubmit)
     recipesResponse = processRecipes(recipesResponse)
-
+    setSearch(recipesResponse)
     setRecipes(recipesResponse)
   }
 

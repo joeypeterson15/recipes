@@ -5,10 +5,14 @@ axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
 const SERVER_URI = 'http://localhost:3000'
   
-export async function getDishes(value) {
+export async function getDishes(value, isSubmit) {
     let endpoint = '/search'
-    let param = `?dish=${value}`
-    const serverURL = SERVER_URI + endpoint + param
+    let params = `?dish=${value}`
+    params += isSubmit ? '?submit=y': '?submit=n'
+    // if (isSubmit) {
+    //     param += '?submit=y'
+    // }
+    const serverURL = SERVER_URI + endpoint + params
 
     console.log('in queries.js - getDishes')
     

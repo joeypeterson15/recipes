@@ -1,7 +1,7 @@
 // MONGODB setup
 const mongoURI = 'mongodb://localhost:27017/recipes_db';
-
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
+// const mongoose = require('mongoose')
 // Connect to MongoDB
 mongoose.connect(mongoURI)
   .then(() => {
