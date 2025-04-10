@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext, useContext, useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import Login from './Login';
+import { useAuth, AuthProvider } from './AuthContext'
 
-function App() {
+// Protected route component
+const ProtectedRoute = () => {
+  const { user } = useAuth();
+  
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+  
+  // If user is authenticated, render the child routes
+  return <Outlet />;
+};
+
+// App component that requires authentication
+const App = () => {
+  const { user, logout } = useAuth();
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Welcome to the App, {user.username}!</h1>
+      <button onClick={logout}>Logout</button>
     </div>
   );
-}
+};
 
-export default App;
+// Router setup
+const AppRouter = () => {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* Public routes
+          <Route path="/login" element={<Login />} />
+           */}
+          {/* Protected routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<App />} />
+            <Route path="/dashboard" element={<App />} />
+            {/* Add more protected routes as needed */}
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  );
+};
+
+export default AppRouter;
