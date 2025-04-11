@@ -4,7 +4,7 @@
 // import path from 'path'
 // import Recipe from './models/Recipe'
 // const csvFilePath = './recipes.csv';
-const Recipe = require('./models/Recipe.cjs');
+const Recipe = require('./models/Recipe.js');
 const mongoose = require('mongoose');
 const fs = require('fs');
 const csv = require('csv-parser');
