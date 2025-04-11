@@ -1,7 +1,11 @@
+// import mongoose from 'mongoose'
+// import { spawn } from 'child_process'
+// import path from 'path'
+// const seedFilePath = '../db/seed.js';
 const mongoose = require('mongoose');
 const { spawn } = require('child_process');
 const path = require('path');
-const seedFilePath = path.resolve(__dirname, 'seed.js');
+const seedFilePath = path.resolve(__dirname, 'seed.cjs');
 
 
 // Check if MongoDB is running

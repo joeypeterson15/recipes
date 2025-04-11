@@ -8,19 +8,15 @@ const SERVER_URI = 'http://localhost:3000'
 export async function getDishes(value, isSubmit) {
     let endpoint = '/search'
     let params = `?dish=${value}`
-    params += isSubmit ? '?submit=y': '?submit=n'
-    // if (isSubmit) {
-    //     param += '?submit=y'
-    // }
+    params += isSubmit ? '&submit=y': '&submit=n'
     const serverURL = SERVER_URI + endpoint + params
-
-    console.log('in queries.js - getDishes')
     
-    await axios.get(serverURL)
-    .then(res => {
-        console.log('in queries.js - getDishes')
-        return res
-    })
+    const response = await axios.get(serverURL)
+    return response.data
+        // .then(res => {
+        //     console.log(res.data)
+        //     return res.data
+        // })
 }
 
 export const getDishOnSubmit = (value) => {

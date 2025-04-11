@@ -13,9 +13,14 @@ const App = () => {
     return recipes
   };
 
-  const queryRecipes = (value, isSubmit=false) => {
-    console.log('in query recipes')
-    let recipesResponse = getDishes(value, isSubmit)
+  async function queryRecipes (value, isSubmit=false) {
+    console.log('value', value)
+    if (value.length == 0) {
+      setSearch('')
+      setRecipes([])
+      return
+    }
+    let recipesResponse = await getDishes(value, isSubmit)
     recipesResponse = processRecipes(recipesResponse)
     setSearch(recipesResponse)
     setRecipes(recipesResponse)
@@ -28,7 +33,8 @@ const App = () => {
   return (
     <>
       <div>
-        <h1>Welcome to the App, {user.username}!</h1>
+        {/* <h1>Welcome to the App, {user.username}!</h1> */}
+        <h2>Start a grocery list!</h2>
         <Input 
           placeholder='Search Recipes...'
           onChange={(e) => queryRecipes(e.target.value)}
@@ -38,22 +44,21 @@ const App = () => {
         </Button>
         {recipes.length > 0 &&
           <List
-          header={<div>Header</div>}
-          footer={<div>Footer</div>}
+          style={{height: '30px'}}
           bordered
           dataSource={recipes}
           renderItem={(item) => (
             <List.Item>
-              {item}
+              {item.name}
             </List.Item>
           )}
           />
         }
       </div>
 
-      <div>
+      {/* <div>
         <button onClick={logout}>Logout</button>
-      </div>
+      </div> */}
     </>
   );
 };

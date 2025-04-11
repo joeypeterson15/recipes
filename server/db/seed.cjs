@@ -1,13 +1,19 @@
+// import mongoose from 'mongoose'
+// import fs from 'fs'
+// import csv from 'csv'
+// import path from 'path'
+// import Recipe from './models/Recipe'
+// const csvFilePath = './recipes.csv';
+const Recipe = require('./models/Recipe.cjs');
 const mongoose = require('mongoose');
 const fs = require('fs');
 const csv = require('csv-parser');
 const path = require('path');
-const Recipe = require('./models/Recipe');
 
 const csvFilePath = path.resolve(__dirname, 'recipes.csv');
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/recipeApp')
+mongoose.connect('mongodb://localhost:27017/recipes_db')
   .then(() => {
     console.log('Connected to MongoDB');
     seedDatabase();

@@ -1,7 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Login from './Login';
-import App from './App';
+import App from './Home';
 import { useAuth, AuthProvider } from './AuthContext'
 
 // Protected route component
@@ -11,7 +10,6 @@ const ProtectedRoute = () => {
   if (!user) {
     return <Navigate to="/login" replace />;
   }
-  
   // If user is authenticated, render the child routes
   return <Outlet />;
 };
@@ -28,7 +26,7 @@ const AppRouter = () => {
             {/* Protected routes */}
             <Route element={<ProtectedRoute />}>
               <Route path="/" element={<App />} />
-              <Route path="/dashboard" element={<App />} />
+              {/* <Route path="/dashboard" element={<App />} /> */}
               {/* Add more protected routes as needed */}
             </Route>
           </Routes>
