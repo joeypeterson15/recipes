@@ -44,7 +44,7 @@ const App = () => {
         </Button>
         {recipes.length > 0 &&
           <List
-          style={{height: '30px'}}
+          // style={{height: '30px'}}
           bordered
           dataSource={recipes}
           renderItem={(item) => (
