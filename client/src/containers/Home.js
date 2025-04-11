@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useState } from 'react';
-import { useAuth } from './AuthContext'
-import { getDishes, getDishOnSubmit } from './queries';
+import { useAuth } from '../AuthContext'
+import { getDishes, getDishOnSubmit } from '../queries';
 import { Input, Button, List } from 'antd';
 
 // App component that requires authentication
-const App = () => {
+const Home = () => {
   const { user, logout } = useAuth();
   const [search, setSearch] = useState('')
   const [recipes, setRecipes] = useState([])

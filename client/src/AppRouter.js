@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Login from './Login';
-import App from './Home';
+import Home from './containers/Home';
 import { useAuth, AuthProvider } from './AuthContext'
 
 // Protected route component

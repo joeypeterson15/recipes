@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 // import './db/config.js';
 import { findRecipesByDishName } from './db/queries.js';
+import { getNewRecipe } from './newRecipe.js';
 
 const app = express()
 const router = express.Router()
@@ -13,17 +14,13 @@ router.get('/', (req, res) => {
 })
 
 app.get('/search', async (req, res) => {
-  console.log(req.query)
     const dish = req.query.dish;
-    const submit = req.query.submit;
-    const recipes = await findRecipesByDishName(dish);
-    // try { 
-    // } catch (error) {
-    // }
-    console.log('recipes: ', recipes);
-    console.log(`Found ${recipes.length} matching recipes:`);
-    // console.error('Error:', error);
-    res.status(200).json(recipes);
+    // const submit = req.query.submit;
+    // const recipes = await findRecipesByDishName(dish);
+    // if (dish.length > 0 && recipes.length == 0 && submit == 'y') {
+    // } 
+    let recipe = await getNewRecipe(dish)
+    console.log('recipe chatgpt:', recipe.output_text)
 })
 
 
