@@ -15,12 +15,13 @@ router.get('/', (req, res) => {
 
 app.get('/search', async (req, res) => {
     const dish = req.query.dish;
-    // const submit = req.query.submit;
-    // const recipes = await findRecipesByDishName(dish);
+    const submit = req.query.submit;
+    const recipes = await findRecipesByDishName(dish);
+    res.status(200).send(recipes)
     // if (dish.length > 0 && recipes.length == 0 && submit == 'y') {
-    // } 
-    let recipe = await getNewRecipe(dish)
-    console.log('recipe chatgpt:', recipe.output_text)
+      // } 
+      // let recipe = await getNewRecipe(dish)
+      // console.log('recipe chatgpt:', recipe.output_text)
 })
 
 

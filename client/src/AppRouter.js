@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Login from './Login';
-import Home from './containers/Home';
+import Home from './components/Home';
 import { useAuth, AuthProvider } from './AuthContext'
 
 // Protected route component
@@ -25,7 +25,7 @@ const AppRouter = () => {
             
             {/* Protected routes */}
             <Route element={<ProtectedRoute />}>
-              <Route path="/" element={<App />} />
+              <Route path="/" element={<Home />} />
               {/* <Route path="/dashboard" element={<App />} /> */}
               {/* Add more protected routes as needed */}
             </Route>

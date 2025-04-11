@@ -5,7 +5,7 @@ export async function getNewRecipe(dishName) {
     console.log('dishname:', dishName)
     const response = await client.responses.create(
         model="gpt-4o-2024-08-06",
-        input=`Supply the quantity of each ingredient needed to make ${dishName} for 8 servings/`,
+        input=`Supply an 8 serving quantity for each ingredient needed to make ${dishName}.`,
         text={
             "format": {
                 "type": "json_schema",
@@ -22,12 +22,6 @@ export async function getNewRecipe(dishName) {
                             "quantity": "number",
                             "unitOfMeasure": "string" 
                         },
-                        // "participants": {
-                        //     "type": "array", 
-                        //     "items": {
-                        //         "type": "string"
-                        //     }
-                        // },
                     },
                     "required": ["name", "ingredients"],
                     "additionalProperties": False
