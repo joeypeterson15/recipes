@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Badge, Descriptions } from "antd";
-import { Col, Divider, Row, Table, List, Typography, Button } from "antd";
+import { List, Typography, Button } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
 const SelectedDishesTable = ({ savedRecipes, setSavedRecipes, setShowGroceryModal }) => {

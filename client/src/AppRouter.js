@@ -22,10 +22,8 @@ const AppRouter = () => {
           
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<Home />} />
-            {/* Add more protected routes here */}
           </Route>
           
-          {/* Catch-all redirect to home */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

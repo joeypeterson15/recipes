@@ -14,14 +14,3 @@ export async function getDishes(value, isSubmit) {
     const response = await axios.get(serverURL);
     return response.data;
 }
-
-// export const getDishOnSubmit = (value) => {
-//     let endpoint = '/fin_search'
-//     let param = `?dish=${value}`
-//     const serverURL = SERVER_URI + endpoint + param
-
-//     axios.get(serverURL)
-//         .then(res => {
-//             return res
-//         })
-// }

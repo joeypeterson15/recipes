@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import { Row, Col, Input, Button, List, Modal, Table } from "antd";
+import React from "react";
+import { Button, Modal, Table } from "antd";
 import { recipes2GroceryList } from "../utils";
 
 const GroceryListModal = ({savedRecipes, showGroceryModal, setShowGroceryModal}) => {
