@@ -1,43 +1,43 @@
 import React, {useEffect, useState} from "react";
-import { Badge, Descriptions } from 'antd';
-import { Col, Divider, Row, Table, List, Typography, Button } from 'antd';
-import { MinusCircleOutlined } from '@ant-design/icons';
+import { Badge, Descriptions } from "antd";
+import { Col, Divider, Row, Table, List, Typography, Button } from "antd";
+import { MinusCircleOutlined } from "@ant-design/icons";
 
 const SelectedDishesTable = ({ savedRecipes, setSavedRecipes, setShowGroceryModal }) => {
-  const [displayData, setDisplayData] = useState([])
+  const [displayData, setDisplayData] = useState([]);
 
   useEffect(() => {
     setDisplayData(() => {
-      return savedRecipes.map((recipe) => recipe.name)
-    })
-  }, [savedRecipes])
+      return savedRecipes.map((recipe) => recipe.name);
+    });
+  }, [savedRecipes]);
   function showGroceryModal() {
-    setShowGroceryModal(true)
+    setShowGroceryModal(true);
   }
 
   const removeSavedRecipe = (item) => {
     setSavedRecipes(() => {
-      return savedRecipes.filter((recipe) => recipe.name != item)
+      return savedRecipes.filter((recipe) => recipe.name != item);
 
       }
-    )
-  }
+    );
+  };
   
-  const header = <div style={{display: 'flex', justifyContent: 'space-between'}}>
+  const header = <div style={{display: "flex", justifyContent: "space-between"}}>
     <Typography.Title level={4}>Saved Dishes</Typography.Title>
     <Button
-      style={{marginTop: '20px'}}
+      style={{marginTop: "20px"}}
       onClick={() => showGroceryModal()}
       type="primary">
         View List
     </Button>
-  </div>
+  </div>;
 
   const recipeItem = (item) => {
-    return <div style={{display: 'flex', justifyContent: 'space-between' }}>
+    return <div style={{display: "flex", justifyContent: "space-between" }}>
       <List.Item>{item}</List.Item>
-      <MinusCircleOutlined style={{marginRight: '25px', cursor: 'pointer'}} onClick={() => removeSavedRecipe(item)} />
-    </div>
+      <MinusCircleOutlined style={{marginRight: "25px", cursor: "pointer"}} onClick={() => removeSavedRecipe(item)} />
+    </div>;
   };
 
     return (
@@ -48,7 +48,7 @@ const SelectedDishesTable = ({ savedRecipes, setSavedRecipes, setShowGroceryModa
             dataSource={displayData}
             renderItem={item =>recipeItem(item)}
           />
-    )
+    );
 };
 
 export default SelectedDishesTable;

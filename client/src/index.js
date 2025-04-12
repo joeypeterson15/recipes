@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import ReactDOM from 'react-dom/client';
-import AppRouter from './AppRouter';
+import React, {useState} from "react";
+import ReactDOM from "react-dom/client";
+import AppRouter from "./AppRouter";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>

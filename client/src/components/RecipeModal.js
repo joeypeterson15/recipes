@@ -1,45 +1,45 @@
 import React, {useState, useEffect} from "react";
-import { Row, Col, Input, Button, Alert, List, Modal, Table } from 'antd';
+import { Row, Col, Input, Button, Alert, List, Modal, Table } from "antd";
 
 
 const RecipeModal = ({recipe, setShowModal, showModal, setSavedRecipes, savedRecipes, setRecipes, setSearch}) => {
-    const [showAlert, setShowAlert] = useState(false)
-    const modalTitle = `${recipe.name} Ingredients`
+    const [showAlert, setShowAlert] = useState(false);
+    const modalTitle = `${recipe.name} Ingredients`;
     const handleOk = () => {
       if (savedRecipes.length < 4) {
-        setSavedRecipes(savedRecipes.concat(recipe))
+        setSavedRecipes(savedRecipes.concat(recipe));
         setShowModal(false);
-        setRecipes([])
-        setSearch('')
-        const inputField = document.getElementById('search_input_field');
-        inputField.value = ''
+        setRecipes([]);
+        setSearch("");
+        const inputField = document.getElementById("search_input_field");
+        inputField.value = "";
 
       } else {
         // setShowModal(false);
-        setShowAlert(true)
+        setShowAlert(true);
       }
     };
 
     const handleCancel = () => {
         setShowModal(false);
-        setShowAlert(false)
+        setShowAlert(false);
     };
 
     const columns = [
         {
-          title: 'Ingredient',
-          dataIndex: 'ingredient',
-          key: 'ingredient',
+          title: "Ingredient",
+          dataIndex: "ingredient",
+          key: "ingredient",
         },
         {
-          title: 'Quantity',
-          dataIndex: 'quantity',
-          key: 'quantity',
+          title: "Quantity",
+          dataIndex: "quantity",
+          key: "quantity",
         },
         {
-          title: 'Unit',
-          dataIndex: 'unit',
-          key: 'unit',
+          title: "Unit",
+          dataIndex: "unit",
+          key: "unit",
         }
       ];
 
@@ -49,7 +49,7 @@ const RecipeModal = ({recipe, setShowModal, showModal, setSavedRecipes, savedRec
             ingredient: ingredient.name,
             quantity: ingredient.quantity,
             unit: ingredient.unitOfMeasure
-        }
+        };
       });
 
     return (
@@ -76,7 +76,7 @@ const RecipeModal = ({recipe, setShowModal, showModal, setSavedRecipes, savedRec
           <Alert message="Grocery lists can not exceed 4 dishes" type="error" />
         }
         </Modal>
-    )
+    );
 };
 
 export default RecipeModal;

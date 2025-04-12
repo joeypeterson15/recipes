@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from "react";
-import { Row, Col, Input, Button, List, Modal, Table } from 'antd';
+import { Row, Col, Input, Button, List, Modal, Table } from "antd";
 import { recipes2GroceryList } from "../utils";
 
 const GroceryListModal = ({savedRecipes, showGroceryModal, setShowGroceryModal}) => {
 
-    const modalTitle = 'Grocery List'
-    const groceryList = recipes2GroceryList(savedRecipes)
+    const modalTitle = "Grocery List";
+    const groceryList = recipes2GroceryList(savedRecipes);
   
     const handleCancel = () => {
         setShowGroceryModal(false);
@@ -13,19 +13,19 @@ const GroceryListModal = ({savedRecipes, showGroceryModal, setShowGroceryModal})
 
     const columns = [
         {
-          title: 'Ingredient',
-          dataIndex: 'ingredient',
-          key: 'ingredient',
+          title: "Ingredient",
+          dataIndex: "ingredient",
+          key: "ingredient",
         },
         {
-          title: 'Quantity',
-          dataIndex: 'quantity',
-          key: 'quantity',
+          title: "Quantity",
+          dataIndex: "quantity",
+          key: "quantity",
         },
         {
-          title: 'Unit',
-          dataIndex: 'unit',
-          key: 'unit',
+          title: "Unit",
+          dataIndex: "unit",
+          key: "unit",
         }
       ];
 
@@ -47,7 +47,7 @@ const GroceryListModal = ({savedRecipes, showGroceryModal, setShowGroceryModal})
             size="small"
         />
     </Modal>
-    )
-}
+    );
+};
 
 export default GroceryListModal;

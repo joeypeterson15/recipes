@@ -1,30 +1,30 @@
 
-import React, { useEffect } from 'react';
-import { useAuth } from './AuthContext'; // Assuming your AuthContext is in a separate file
+import React, { useEffect } from "react";
+import { useAuth } from "./AuthContext"; // Assuming your AuthContext is in a separate file
 import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const { login, user } = useAuth();
 
   useEffect(() => {
-    console.log('user: ', user)
+    console.log("user: ", user);
     if (user?.username && user?.token) {
-      return <Navigate to="/" />
+      return <Navigate to="/" />;
     }
-  }, [user, login])
+  }, [user, login]);
 
   useEffect(() => {
     // Load the Google API script
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.src = "https://apis.google.com/js/platform.js"; 
     script.async = true;
     script.defer = true;
     window.document.body.appendChild(script);
 
     // Add meta tag for client ID
-    const meta = document.createElement('meta');
-    meta.name = 'google-signin-client_id';
-    meta.content = '511466373592-oom82ta6ctiqlukuigj1ajjvlmndsqg0.apps.googleusercontent.com';
+    const meta = document.createElement("meta");
+    meta.name = "google-signin-client_id";
+    meta.content = "511466373592-oom82ta6ctiqlukuigj1ajjvlmndsqg0.apps.googleusercontent.com";
     window.document.head.appendChild(meta);
 
     // Initialize Google Sign-In when script is loaded
@@ -76,12 +76,12 @@ const Login = () => {
 
   const onSignIn = (googleUser) => {
     login({
-      username: 'asdfasdf',
-      email: 'asdfasdf',
-      googleId: 'asdfasdf',
-      token: 'asdfasdf'
+      username: "asdfasdf",
+      email: "asdfasdf",
+      googleId: "asdfasdf",
+      token: "asdfasdf"
     });
-  }
+  };
 
   return (
       <div className="login-container">

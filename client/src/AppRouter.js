@@ -1,7 +1,7 @@
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import Login from './Login';
-import Home from './components/Home';
-import { useAuth, AuthProvider } from './AuthContext'
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
+import Login from "./Login";
+import Home from "./components/Home";
+import { useAuth, AuthProvider } from "./AuthContext";
 
 // Protected route component
 const ProtectedRoute = () => {

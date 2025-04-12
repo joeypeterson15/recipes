@@ -1,15 +1,15 @@
-import React, { createContext, useContext, useState } from 'react';
-import { useAuth } from '../AuthContext';
-import { Input, Button, List, Skeleton, Typography } from 'antd';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import RecipeModal from './RecipeModal';
-import Search from '../containers/Search';
-import SelectedDishesTable from './SelectedRecipesList';
-import GroceryListModal from './GroceryListModal';
+import React, { createContext, useContext, useState } from "react";
+import { useAuth } from "../AuthContext";
+import { Input, Button, List, Skeleton, Typography } from "antd";
+import { Breadcrumb, Layout, Menu, theme } from "antd";
+import RecipeModal from "./RecipeModal";
+import Search from "../containers/Search";
+import SelectedDishesTable from "./SelectedRecipesList";
+import GroceryListModal from "./GroceryListModal";
 const { Header, Content, Footer } = Layout;
 
 // App component that requires authentication
-const navNames = ['Search Recipes', 'View List']
+const navNames = ["Search Recipes", "View List"];
 const items = navNames.map((name, index) => ({
   key: String(index + 1),
   label: name,
@@ -22,36 +22,36 @@ const Home = () => {
   const [savedRecipes, setSavedRecipes] = useState([]);
   const [showGroceryModal, setShowGroceryModal] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   
 const {
   token: { colorBgContainer, borderRadiusLG },
 } = theme.useToken();
 return (
-  <Layout style={{height: '100%', position: 'relative'}}>
-    <Content style={{ padding: '0 48px', position: 'relative'}}>
+  <Layout style={{height: "100%", position: "relative"}}>
+    <Content style={{ padding: "0 48px", position: "relative"}}>
       <div
         style={{
-          margin: 'auto',
-          marginTop: '50px',
-          paddingTop: '20px',
+          margin: "auto",
+          marginTop: "50px",
+          paddingTop: "20px",
           padding: 24,
-          minHeight: '750px',
-          width: '40%',
-          alignItems: 'center',
+          minHeight: "750px",
+          width: "40%",
+          alignItems: "center",
           background: colorBgContainer,
           borderRadius: borderRadiusLG,
-          border: '0.2px solid black'
+          border: "0.2px solid black"
         }}
       >
       <div>
-        <div style={{paddingTop: '20px', paddingBottom: '25px', display: 'flex', justifyContent: 'space-between'}}>
+        <div style={{paddingTop: "20px", paddingBottom: "25px", display: "flex", justifyContent: "space-between"}}>
           <Typography.Title level={2} style={{ margin: 0 }}>
             Start a Grocery List
         </Typography.Title>
         </div>
 
-        <div style={{ position: 'relative', paddingBottom: '20px' }}>
+        <div style={{ position: "relative", paddingBottom: "20px" }}>
           <Search
             search={search}
             setSearch={setSearch}
@@ -61,7 +61,7 @@ return (
             setRecipes={setRecipes}
           />
           </div>
-          <div style={{ marginTop: '60%', position: 'relative', zIndex: 1 }}>
+          <div style={{ marginTop: "60%", position: "relative", zIndex: 1 }}>
             <SelectedDishesTable
               savedRecipes={savedRecipes}
               setSavedRecipes={setSavedRecipes}
@@ -91,7 +91,7 @@ return (
 
       </div>
     </Content>
-    <Footer style={{ textAlign: 'center' }}>
+    <Footer style={{ textAlign: "center" }}>
     </Footer>
   </Layout>
 );

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from "react";
 
 export const AuthContext = createContext(null);
 
@@ -8,12 +8,12 @@ export const useAuth = () => {
 
 // Authentication provider component
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState({'username': false, 'token' : false});
+    const [user, setUser] = useState({"username": false, "token" : false});
   
     // Login function
     const login = (userData) => {
       setUser(userData);
-      localStorage.setItem('user', JSON.stringify(userData));
+      localStorage.setItem("user", JSON.stringify(userData));
     };
   
     // Logout function

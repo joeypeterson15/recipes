@@ -1,38 +1,38 @@
-import React from 'react';
-import { getDishes } from '../queries';
-import { Input, Button, List } from 'antd';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import './Search.css'
+import React from "react";
+import { getDishes } from "../queries";
+import { Input, Button, List } from "antd";
+import InfiniteScroll from "react-infinite-scroll-component";
+import "./Search.css";
 
 const Search = ({setCardRecipe, setShowModal, setRecipes, recipes, search, setSearch}) => {
     
       async function searchRecipes(value, isSubmit=false) {
         if (value.length == 0) {
-          setSearch('')
-          setRecipes([])
-          return
+          setSearch("");
+          setRecipes([]);
+          return;
         }
-        setSearch(value)
-        const recipesResponse = await getDishes(search, isSubmit)
-        setRecipes(recipesResponse)
-      };
+        setSearch(value);
+        const recipesResponse = await getDishes(search, isSubmit);
+        setRecipes(recipesResponse);
+      }
 
       async function searchRecipeSubmit(search, isSubmit=true) {
         if (search.length == 0) {
-          setSearch('')
-          setRecipes([])
-          return
+          setSearch("");
+          setRecipes([]);
+          return;
         }
-        setSearch(search)
-        const recipesResponse = await getDishes(search, isSubmit)
+        setSearch(search);
+        const recipesResponse = await getDishes(search, isSubmit);
         if (recipesResponse.length == 1) {
-          showRecipeCard(recipesResponse[0])
+          showRecipeCard(recipesResponse[0]);
         }
       }
 
       const showRecipeCard = (item) => {
-        setCardRecipe(item)
-        setShowModal(true)
+        setCardRecipe(item);
+        setShowModal(true);
       };
 
     return (
@@ -43,7 +43,7 @@ const Search = ({setCardRecipe, setShowModal, setRecipes, recipes, search, setSe
               onChange={(e) => searchRecipes(e.target.value)}
             />
           <Button 
-              style={{float: 'right', marginTop: '20px' }}
+              style={{float: "right", marginTop: "20px" }}
               onClick={() => searchRecipeSubmit(search)}
               type='primary'
             >
@@ -55,16 +55,16 @@ const Search = ({setCardRecipe, setShowModal, setRecipes, recipes, search, setSe
                   id="scrollableDiv"
                   style={{
                     height: 300,
-                    overflow: 'auto',
-                    padding: '0 16px',
-                    border: '1px solid rgba(140, 140, 140, 0.35)',
+                    overflow: "auto",
+                    padding: "0 16px",
+                    border: "1px solid rgba(140, 140, 140, 0.35)",
                     zIndex: 1000,
-                    position: 'absolute',
-                    width: '85%',
-                    left: '50%',
+                    position: "absolute",
+                    width: "85%",
+                    left: "50%",
                     left: 0,
-                    background: 'white',
-                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
+                    background: "white",
+                    boxShadow: "0 4px 8px rgba(0,0,0,0.1)"
                   }}
                 >
                   <InfiniteScroll
@@ -78,10 +78,10 @@ const Search = ({setCardRecipe, setShowModal, setRecipes, recipes, search, setSe
                       <div onClick={() => showRecipeCard(item)}>
                         <List.Item
                           className="hover-highlight"
-                          style={{cursor: 'pointer'}} 
+                          style={{cursor: "pointer"}} 
                           onClick={() => showRecipeCard(item)}
                         >
-                          <List.Item.Meta style={{paddingLeft: '10px'}}
+                          <List.Item.Meta style={{paddingLeft: "10px"}}
                             title={item.name}
                           />
                         </List.Item>
@@ -93,7 +93,7 @@ const Search = ({setCardRecipe, setShowModal, setRecipes, recipes, search, setSe
                 </div>
               }
         </>
-    )
-}
+    );
+};
 
 export default Search;
