@@ -1,33 +1,10 @@
-import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
+import React from 'react';
 import { getDishes } from '../queries';
-import { Input, Button, List, Skeleton } from 'antd';
+import { Input, Button, List } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import './Search.css'
 
 const Search = ({setCardRecipe, setShowModal, setRecipes, recipes, search, setSearch}) => {
-
-      // function useComponentVisible(initialIsVisible) {
-      //   const [isComponentVisible, setIsComponentVisible] = useState(initialIsVisible);
-      //   const ref = useRef(null);
-    
-      //   const handleClickOutside = (event) => {
-      //       if (ref.current && !ref.current.contains(event.target)) {
-      //           setIsComponentVisible(false);
-      //           setRecipes([])
-      //           setSearch('')
-      //       }
-      //   };
-    
-      //   useEffect(() => {
-      //       document.addEventListener('click', handleClickOutside, true);
-      //       return () => {
-      //           document.removeEventListener('click', handleClickOutside, true);
-      //       };
-      //   }, []);
-    
-      //   return { ref, isComponentVisible, setIsComponentVisible };
-      // }
-      // const { ref, isComponentVisible } = useComponentVisible(true);
     
       async function searchRecipes(value, isSubmit=false) {
         if (value.length == 0) {
@@ -53,12 +30,6 @@ const Search = ({setCardRecipe, setShowModal, setRecipes, recipes, search, setSe
         }
       }
 
-      const handleFocus = () => {
-        console.log('in focus handler')
-        setSearch('')
-        setRecipes([])
-      }
-
       const showRecipeCard = (item) => {
         setCardRecipe(item)
         setShowModal(true)
@@ -70,7 +41,6 @@ const Search = ({setCardRecipe, setShowModal, setRecipes, recipes, search, setSe
               id="search_input_field" 
               placeholder='Search Recipes...'
               onChange={(e) => searchRecipes(e.target.value)}
-              onFocusOut={() => handleFocus()}
             />
           <Button 
               style={{float: 'right', marginTop: '20px' }}
@@ -79,9 +49,7 @@ const Search = ({setCardRecipe, setShowModal, setRecipes, recipes, search, setSe
             >
               Search
             </Button>
-            
-            {/* <div ref={ref}> */}
-              {/* {recipes?.length > 0 && isComponentVisible && */}
+
               {recipes?.length > 0 &&
                 <div
                   id="scrollableDiv"
@@ -91,12 +59,12 @@ const Search = ({setCardRecipe, setShowModal, setRecipes, recipes, search, setSe
                     padding: '0 16px',
                     border: '1px solid rgba(140, 140, 140, 0.35)',
                     zIndex: 1000,
-                    position: 'absolute', // Changed from 'relative' to 'absolute'
-                    width: '85%', // Make sure it has width
-                    left: '50%', // Position at 50% from the left edge of the parent
-                    left: 0, // Align with the left edge of the container
-                    background: 'white', // Add background to prevent see-through
-                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)' // Optional: add shadow for better visibility
+                    position: 'absolute',
+                    width: '85%',
+                    left: '50%',
+                    left: 0,
+                    background: 'white',
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
                   }}
                 >
                   <InfiniteScroll
@@ -105,7 +73,6 @@ const Search = ({setCardRecipe, setShowModal, setRecipes, recipes, search, setSe
                     scrollableTarget="scrollableDiv"
                   >
                     <List
-                    // bordered
                     dataSource={recipes}
                     renderItem={(item) => (
                       <div onClick={() => showRecipeCard(item)}>
@@ -125,8 +92,6 @@ const Search = ({setCardRecipe, setShowModal, setRecipes, recipes, search, setSe
                   </InfiniteScroll>
                 </div>
               }
-
-            {/* </div> */}
         </>
     )
 }
