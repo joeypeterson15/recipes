@@ -13,6 +13,20 @@ const Login = () => {
     }
   }, [user, navigate]);
 
+  const loginStyle = {
+    border: '0.2px solid black', 
+    width: '24rem',
+    maxWidth: '90%',
+    padding: '2rem',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    textAlign: 'center',
+    borderRadius: '8px',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+  }
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://accounts.google.com/gsi/client";
@@ -34,7 +48,6 @@ const Login = () => {
       }
     };
 
-    // Cleanup
     return () => {
       if (script.parentNode) {
         document.body.removeChild(script);
@@ -54,7 +67,10 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div 
+      className="login-container"
+      style={loginStyle}
+    >
       <h2>Sign in with Google</h2>
       <div id="googleSignInButton" ref={googleButtonRef}></div>
     </div>
