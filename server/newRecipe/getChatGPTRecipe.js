@@ -1,45 +1,24 @@
 import OpenAI from "openai";
+import { recipePrompt } from "./ChatGPTPrompts";
 
 const client = new OpenAI();
 
 export async function getChatGPTRecipe(dishName) {   
     
-const prompt = `You are an API that returns only JSON. Do not include any explanation or text outside of the JSON.
+const prompt = recipePrompt(dishName)
 
-    Given the dish "${dishName}", return a JSON object with the following structure:
-
-    {
-    "name": "Dish Name",
-    "ingredients": [
+const response = await client.chat.completions.create({
+    model: "gpt-4o",
+    messages: [
         {
-        "name": "Ingredient name",
-        "quantity": Number,
-        "unitOfMeasure": "Unit"
+            role: "user",
+            content: prompt
         }
-        // more ingredients...
-    ]
-    }
+    ],
+    temperature: 0.7,
+});
 
-    If the dish is not valid, return:
-    {
-    "name": "Not Found",
-    "ingredients": []
-    }
+const recipe = JSON.parse(response.choices[0].message.content);
 
-    Now respond only with the JSON object for "${dishName}". Do not include \`\`\` or any other text. Supply an 8 serving quantity for each ingredient`;
-    
-    const response = await client.chat.completions.create({
-        model: "gpt-4o",
-        messages: [
-            {
-                role: "user",
-                content: prompt
-            }
-        ],
-        temperature: 0.7,
-    });
-
-    const recipe = JSON.parse(response.choices[0].message.content);
-
-    return recipe
+return recipe
 }
