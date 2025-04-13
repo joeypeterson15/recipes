@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Typography } from "antd";
 
 const Login = () => {
   const { login, user } = useAuth();
@@ -14,7 +15,7 @@ const Login = () => {
   }, [user, navigate]);
 
   const loginStyle = {
-    border: '0.2px solid black', 
+    border: '0.2px solid #1E90FF', 
     width: '24rem',
     maxWidth: '90%',
     padding: '2rem',
@@ -24,7 +25,11 @@ const Login = () => {
     transform: 'translate(-50%, -50%)',
     textAlign: 'center',
     borderRadius: '8px',
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 
   useEffect(() => {
@@ -71,7 +76,9 @@ const Login = () => {
       className="login-container"
       style={loginStyle}
     >
-      <h2>Sign in with Google</h2>
+      <Typography.Title level={3} style={{ paddingBottom: 20, color: '#1E90FF' }}>
+        Grocery List Generator
+      </Typography.Title>
       <div id="googleSignInButton" ref={googleButtonRef}></div>
     </div>
   );
