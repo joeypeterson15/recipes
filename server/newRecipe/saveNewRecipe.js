@@ -14,7 +14,6 @@ async function saveNewRecipe(recipe) {
     await Recipe.insertOne(recipe)
     console.log(`Added recipe to the database`);
 
-    mongoose.disconnect();
 }
 
 export default saveNewRecipe;
