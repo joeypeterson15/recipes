@@ -61,15 +61,16 @@ const Search = ({setCardRecipe, setShowModal, setRecipes, recipes, search, setSe
                     position: "absolute",
                     width: "85%",
                     left: "50%",
+                    transform: 'translateX(-58%)',
                     background: "white",
                     boxShadow: "0 4px 8px rgba(0,0,0,0.1)"
                   }}
                 >
-                  <InfiniteScroll
+                  {/* <InfiniteScroll
                     dataLength={recipes.length}
                     hasMore={recipes.length < 100}
                     scrollableTarget="scrollableDiv"
-                  >
+                  > */}
                     <List
                     dataSource={recipes}
                     renderItem={(item) => (
@@ -87,7 +88,7 @@ const Search = ({setCardRecipe, setShowModal, setRecipes, recipes, search, setSe
                       </div>
                     )}
                     />
-                  </InfiniteScroll>
+                  {/* </InfiniteScroll> */}
                 </div>
               }
         </>
