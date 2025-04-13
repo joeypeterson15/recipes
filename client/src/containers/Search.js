@@ -1,7 +1,6 @@
 import React from "react";
 import { getDishes } from "../queries";
 import { Input, Button, List } from "antd";
-import InfiniteScroll from "react-infinite-scroll-component";
 import "./Search.css";
 
 const Search = ({setCardRecipe, setShowModal, setRecipes, recipes, search, setSearch}) => {
