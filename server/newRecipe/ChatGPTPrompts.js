@@ -1,4 +1,4 @@
-const recipePrompt = (dishName) => { `You are an API that returns only JSON. Do not include any explanation or text outside of the JSON.
+const recipePrompt = (dishName) => { return `You are an API that returns only JSON. Do not include any explanation or text outside of the JSON.
 
     Given the dish "${dishName}", return a JSON object with the following structure:
 

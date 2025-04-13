@@ -37,7 +37,7 @@ const Login = () => {
     script.onload = () => {
       if (window.google) {
         window.google.accounts.id.initialize({
-          client_id: "511466373592-oom82ta6ctiqlukuigj1ajjvlmndsqg0.apps.googleusercontent.com",
+          client_id: process.env.REACT_APP_GOOGLE_API_LOGIN_KEY,
           callback: handleGoogleSignIn
         });
         

@@ -1,14 +1,9 @@
-// import mongoose from 'mongoose'
-// import { spawn } from 'child_process'
-// import path from 'path'
-// const seedFilePath = '../db/seed.js';
 const mongoose = require('mongoose');
 const { spawn } = require('child_process');
 const path = require('path');
 const seedFilePath = path.resolve(__dirname, 'seed.cjs');
 
 
-// Check if MongoDB is running
 async function checkMongoDBRunning() {
   try {
     await mongoose.connect('mongodb://localhost:27017/recipes_db', { 
@@ -21,7 +16,6 @@ async function checkMongoDBRunning() {
   }
 }
 
-// Main setup function
 async function setup() {
   console.log('Checking if MongoDB is running...');
   const isMongoRunning = await checkMongoDBRunning();
@@ -49,5 +43,4 @@ async function setup() {
   });
 }
 
-// Run setup
 setup();

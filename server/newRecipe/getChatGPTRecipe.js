@@ -1,7 +1,12 @@
+import dotenv from "dotenv";
 import OpenAI from "openai";
 import recipePrompt from "./ChatGPTPrompts.js";
 
-const client = new OpenAI();
+dotenv.config();
+
+const client = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+});
 
 export async function getChatGPTRecipe(dishName) {   
     

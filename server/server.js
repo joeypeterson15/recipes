@@ -5,13 +5,8 @@ import saveNewRecipe from './newRecipe/saveNewRecipe.js';
 import { getChatGPTRecipe } from './newRecipe/getChatGPTRecipe.js';
 
 const app = express()
-const router = express.Router()
 
 app.use(cors());
-
-// router.get('/', (req, res) => {
-//     res.send('Hello World')
-// })
 
 app.get('/search', async (req, res) => {
     const dish = req.query.dish;
