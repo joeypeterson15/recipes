@@ -1,13 +1,19 @@
 
+
+require('dotenv')
 const Recipe = require('./models/Recipe.js');
 const mongoose = require('mongoose');
 const fs = require('fs');
 const csv = require('csv-parser');
 const path = require('path');
 
+const mongoAtlas = process.env.MONGO_CONNECTION
+const localMongo = 'mongodb://localhost:27017/recipes_db'
+
+
 const csvFilePath = path.resolve(__dirname, 'recipes.csv');
 
-mongoose.connect('mongodb://localhost:27017/recipes_db')
+mongoose.connect(mongoAtlas)
   .then(() => {
     console.log('Connected to MongoDB');
     seedDatabase();

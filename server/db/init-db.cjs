@@ -1,12 +1,18 @@
+const dotenv = require('dotenv')
 const mongoose = require('mongoose');
 const { spawn } = require('child_process');
 const path = require('path');
 const seedFilePath = path.resolve(__dirname, 'seed.cjs');
 
+dotenv.config()
+
+// const localMongoURI = 'mongodb://localhost:27017/recipes_db';
+const mongoAtlas = process.env.MONGO_CONNECTION
+console.log('ASGFKJASDG', mongoAtlas)
 
 async function checkMongoDBRunning() {
   try {
-    await mongoose.connect('mongodb://localhost:27017/recipes_db', { 
+    await mongoose.connect(mongoAtlas, { 
       serverSelectionTimeoutMS: 2000 
     });
     await mongoose.disconnect();
@@ -22,9 +28,6 @@ async function setup() {
   
   if (!isMongoRunning) {
     console.error('MongoDB is not running. Please start MongoDB first.');
-    console.error('On macOS: brew services start mongodb/brew/mongodb-community');
-    console.error('On Windows: Start MongoDB service from services.msc');
-    console.error('On Linux: sudo systemctl start mongod');
     process.exit(1);
   }
   

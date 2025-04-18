@@ -1,8 +1,11 @@
 // MONGODB setup
-const mongoURI = 'mongodb://localhost:27017/recipes_db';
+import dotenv from 'dotenv'
 import mongoose from 'mongoose'
+const mongoURI = 'mongodb://localhost:27017/recipes_db';
+// dotenv.config({ path: '../../.env' })
+dotenv.config()
 
-mongoose.connect(mongoURI)
+mongoose.connect(process.env.MONGO_CONNECTION)
   .then(() => {
     console.log('Connected to MongoDB successfully');
   })
